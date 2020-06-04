@@ -6,7 +6,7 @@ import HeroSection from "./Layout/HeroSection";
 import Testimonial from "./Layout/Testimonial";
 import Footer from "./Layout/Footer";
 import Register from "./Auth/Register";
-console.log("Register", Register);
+ 
 
 let App = () => {
   return (

@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import useLocalStorage from "./../hooks/useLocalStorage";
 import HeroSection from "./Layout/HeroSection";
@@ -9,7 +9,7 @@ import Footer from "./Layout/Footer";
 import Register from "./Auth/Register";
 
 let App = () => {
-  const [auth, setAuth] = useLocalStorage("auth", "");
+  const [auth] = useLocalStorage("auth", "");
   return (
     <Router>
       <Route exact path="/">

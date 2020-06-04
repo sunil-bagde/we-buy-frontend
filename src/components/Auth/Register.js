@@ -4,15 +4,14 @@ import { useHistory } from "react-router-dom";
 import { registerApi } from "./../../api/register";
 import useLocalStorage from "./../../hooks/useLocalStorage";
 import Errors from "./../../service/Error";
- 
 
 let Register = () => {
   const [error, setErros] = useState(Errors.instance());
   const [token, setToken] = useLocalStorage("auth", "");
- 
+
   let history = useHistory();
-   if(token?.isLogin){
-      history.push("/");
+  if (token?.isLogin) {
+    history.push("/");
   }
   let handleRegister = async (e) => {
     e.preventDefault();
@@ -148,13 +147,13 @@ let Register = () => {
                       id="email"
                       type="email"
                       name="email"
-                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
+                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5
                         ${error.has("email") && "border-red-400"}`}
                     />
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("email") && (
                         <svg
-                          class="h-5 w-5 text-red-500"
+                          className="h-5 w-5 text-red-500"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -167,7 +166,9 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                  <p class="mt-2 text-sm text-red-600">{error.get("email")}</p>
+                  <p className="mt-2 text-sm text-red-600">
+                    {error.get("email")}
+                  </p>
                 </div>
                 <div className="mt-6">
                   <label
@@ -181,13 +182,13 @@ let Register = () => {
                       id="username"
                       type="username"
                       name="username"
-                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
+                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5
                        ${error.has("username") && "border-red-400"}`}
                     />
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("username") && (
                         <svg
-                          class="h-5 w-5 text-red-500"
+                          className="h-5 w-5 text-red-500"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -200,7 +201,7 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                  <p class="mt-2 text-sm text-red-600">
+                  <p className="mt-2 text-sm text-red-600">
                     {error.get("username")}
                   </p>
                 </div>
@@ -216,13 +217,13 @@ let Register = () => {
                       id="password"
                       type="password"
                       name="password"
-                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
+                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5
                        ${error.has("password") && "border-red-400"}`}
                     />
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("password") && (
                         <svg
-                          class="h-5 w-5 text-red-500"
+                          className="h-5 w-5 text-red-500"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -235,7 +236,7 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                  <p class="mt-2 text-sm text-red-600">
+                  <p className="mt-2 text-sm text-red-600">
                     {error.get("password")}
                   </p>
                 </div>
@@ -252,14 +253,15 @@ let Register = () => {
                       id="password_confirmation"
                       type="password"
                       name="password_confirmation"
-                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
-                       ${error.has("password_confirmation") &&
-                         "border-red-400"}`}
+                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5
+                       ${
+                         error.has("password_confirmation") && "border-red-400"
+                       }`}
                     />
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("password_confirmation") && (
                         <svg
-                          class="h-5 w-5 text-red-500"
+                          className="h-5 w-5 text-red-500"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -272,7 +274,7 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                  <p class="mt-2 text-sm text-red-600">
+                  <p className="mt-2 text-sm text-red-600">
                     {error.get("password_confirmation")}
                   </p>
                 </div>
@@ -288,13 +290,13 @@ let Register = () => {
                       id="mobile"
                       type="mobile"
                       name="mobile"
-                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
+                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5
                        ${error.has("mobile") && "border-red-400"}`}
                     />
-                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("mobile") && (
                         <svg
-                          class="h-5 w-5 text-red-500"
+                          className="h-5 w-5 text-red-500"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -307,7 +309,9 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                  <p class="mt-2 text-sm text-red-600">{error.get("mobile")}</p>
+                  <p className="mt-2 text-sm text-red-600">
+                    {error.get("mobile")}
+                  </p>
                 </div>
                 <div className="mt-6">
                   <span className="block w-full rounded-md shadow-sm">

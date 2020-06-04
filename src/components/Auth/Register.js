@@ -1,16 +1,31 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import { registerApi } from "./../../api/register";
+import useLocalStorage from "./../../hooks/useLocalStorage";
 import Errors from "./../../service/Error";
+ 
 
 let Register = () => {
   const [error, setErros] = useState(Errors.instance());
+  const [token, setToken] = useLocalStorage("auth", "");
  
+  let history = useHistory();
+   if(token?.isLogin){
+      history.push("/");
+  }
   let handleRegister = async (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
     try {
       let { data } = await registerApi(formData);
-     
+      if (data) {
+        setToken({
+          isLogin: data.isLogin,
+          token: data.token,
+        });
+        return history.push("/");
+      }
     } catch ({ response }) {
       setErros(Errors.instance(response.data));
     }
@@ -169,7 +184,7 @@ let Register = () => {
                       className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
                        ${error.has("username") && "border-red-400"}`}
                     />
-                      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("username") && (
                         <svg
                           class="h-5 w-5 text-red-500"
@@ -185,7 +200,9 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                   <p class="mt-2 text-sm text-red-600">{error.get("username")}</p>
+                  <p class="mt-2 text-sm text-red-600">
+                    {error.get("username")}
+                  </p>
                 </div>
                 <div className="mt-6">
                   <label
@@ -202,7 +219,7 @@ let Register = () => {
                       className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
                        ${error.has("password") && "border-red-400"}`}
                     />
-                      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("password") && (
                         <svg
                           class="h-5 w-5 text-red-500"
@@ -218,7 +235,9 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                    <p class="mt-2 text-sm text-red-600">{error.get("password")}</p>
+                  <p class="mt-2 text-sm text-red-600">
+                    {error.get("password")}
+                  </p>
                 </div>
 
                 <div className="mt-6">
@@ -237,7 +256,7 @@ let Register = () => {
                        ${error.has("password_confirmation") &&
                          "border-red-400"}`}
                     />
-                      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("password_confirmation") && (
                         <svg
                           class="h-5 w-5 text-red-500"
@@ -253,7 +272,9 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                            <p class="mt-2 text-sm text-red-600">{error.get("password_confirmation")}</p>
+                  <p class="mt-2 text-sm text-red-600">
+                    {error.get("password_confirmation")}
+                  </p>
                 </div>
                 <div className="mt-6">
                   <label
@@ -269,9 +290,8 @@ let Register = () => {
                       name="mobile"
                       className={`appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 
                        ${error.has("mobile") && "border-red-400"}`}
-                    
                     />
-                      <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       {error.has("mobile") && (
                         <svg
                           class="h-5 w-5 text-red-500"
@@ -287,7 +307,7 @@ let Register = () => {
                       )}
                     </div>
                   </div>
-                   <p class="mt-2 text-sm text-red-600">{error.get("mobile")}</p>
+                  <p class="mt-2 text-sm text-red-600">{error.get("mobile")}</p>
                 </div>
                 <div className="mt-6">
                   <span className="block w-full rounded-md shadow-sm">

@@ -18,12 +18,15 @@ let Register = () => {
     let formData = new FormData(e.target);
     try {
       let { data } = await registerApi(formData);
+
       if (data) {
         setToken({
           isLogin: data.isLogin,
           token: data.token,
+          user: data.user,
         });
-        return history.push("/");
+        window.location.href = "/";
+        return;
       }
     } catch ({ response }) {
       setErros(Errors.instance(response.data));

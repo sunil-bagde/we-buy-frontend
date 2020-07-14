@@ -1,9 +1,9 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-let HeroSection = () => {
-    return (
-       <div className="relative bg-gray-50 overflow-hidden">
+let HeroSection = ({ auth }) => {
+  return (
+    <div className="relative bg-gray-50 overflow-hidden">
       <div className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full">
         <div className="relative h-full max-w-screen-xl mx-auto">
           <svg
@@ -129,25 +129,35 @@ let HeroSection = () => {
               </Link>
             </div>
             <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-              <span className="inline-flex rounded-md shadow">
-                <Link
-                  to="#"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-gray-50 active:text-indigo-700 transition duration-150 ease-in-out"
-                >
-                  Log in
-                </Link>
-
-              </span>
-
-               <span className="inline-flex rounded-md shadow ml-3">
-                <Link
-                  to="/register"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md bg-indigo-600 text-white  hover:text-white focus:outline-none focus:shadow-outline-blue active:bg-gray-50 active:text-indigo-700 transition duration-150 ease-in-out"
-                >
-                  Register
-                </Link>
-
-              </span>
+              {auth?.isLogin ? (
+                <span className="inline-flex rounded-md shadow">
+                  <Link
+                    to="#"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-gray-50 active:text-indigo-700 transition duration-150 ease-in-out"
+                  >
+                    Log out
+                  </Link>
+                </span>
+              ) : (
+                <>
+                  <span className="inline-flex rounded-md shadow">
+                    <Link
+                      to="#"
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline-blue active:bg-gray-50 active:text-indigo-700 transition duration-150 ease-in-out"
+                    >
+                      Log in
+                    </Link>
+                  </span>
+                  <span className="inline-flex rounded-md shadow ml-3">
+                    <Link
+                      to="/register"
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md bg-indigo-600 text-white  hover:text-white focus:outline-none focus:shadow-outline-blue active:bg-gray-50 active:text-indigo-700 transition duration-150 ease-in-out"
+                    >
+                      Register
+                    </Link>
+                  </span>
+                </>
+              )}
             </div>
           </nav>
         </div>
@@ -159,7 +169,6 @@ let HeroSection = () => {
           <div
             className="rounded-lg shadow-md transition transform origin-top-right"
             x-show="open"
-
           >
             <div className="rounded-lg bg-white shadow-xs overflow-hidden">
               <div className="px-5 pt-4 flex items-center justify-between">
@@ -225,9 +234,7 @@ let HeroSection = () => {
                 >
                   Log in
                 </Link>
-
               </div>
-
             </div>
           </div>
         </div>
@@ -265,7 +272,7 @@ let HeroSection = () => {
         </div>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

@@ -13,7 +13,7 @@ let App = () => {
   return (
     <Router>
       <Route exact path="/">
-        <HeroSection {...auth} />
+        <HeroSection auth={auth} />
         <Testimonial />
         <Footer />
       </Route>
